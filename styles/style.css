@@ -21,6 +21,9 @@
     --bg-card: #ffffff;
     --color-title: #1a1a1b;
     --color-bord-card: #e0e0e0;
+    --color-user-name: #1a1a1b;
+    --color-user-role: #6b7280;
+    --color-user-email: #2563eb;
 }
 
 body {
@@ -95,6 +98,19 @@ h2 {
     justify-content: center;
     line-height: 50px;
     padding-left: 10px;
+}
+
+.user-name {
+    color: var(--color-user-name);
+}
+
+.user-role {
+    color: var(--color-user-role);
+}
+
+.user-email {
+    color: var(--color-user-email);
+    text-decoration: none;
 }
 
 /*
