@@ -9,3 +9,74 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+    ================================
+    HEADER
+    ================================
+*/
+
+.header-title {
+    margin: 20px;
+    flex: 1;
+}
+
+/*
+    ================================
+    MAIN
+    ================================
+*/
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+}
+
+/*
+    ================================
+    CARD
+    ================================
+*/
+
+.card {
+    max-width: 500px;
+    display: flex;
+    border: 2px solid black;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.img-card {
+    display: block;
+    max-width: 150px;
+}
+
+/*
+    ================================
+    FOOTER
+    ================================
+*/
+
+.footer {
+    flex: 1;
+}
+
+.work-with-us {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.header-work-with-us {
+    text-align: center;
+    margin: 20px;
+}
