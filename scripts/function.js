@@ -10,9 +10,9 @@ const creaCard = impiegato => {
                         <img src="${impiegato.img}" alt="Img-dipendente" class="img-card">
                     </div>
                     <div class="user-info">
-                        <h3>${impiegato.name}</h3>
-                        <span>RUOLO: ${impiegato.role}</span>
-                        <span>EMAIL: ${impiegato.email}</span>
+                        <h3 class="user-name">${impiegato.name}</h3>
+                        <span class="user-role">RUOLO: ${impiegato.role}</span>
+                        <span class="user-email">EMAIL: ${impiegato.email}</span>
                     </div>
                 </div>`;
     return cardImpiegato;
