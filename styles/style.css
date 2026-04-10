@@ -10,10 +10,30 @@
     box-sizing: border-box;
 }
 
+/*
+    ================================
+    ROOT 
+    ================================
+*/
+
+:root {
+    --bg-body: #F8F9FA;
+    --bg-card: #ffffff;
+    --color-title: #1a1a1b;
+    --color-bord-card: #e0e0e0;
+}
+
 body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: var(--bg-body);
+    color: ;
+}
+
+h1,
+h2 {
+    color: var(--color-title);
 }
 
 /*
@@ -59,6 +79,9 @@ body {
     border-radius: 20px;
     overflow: hidden;
     flex-basis: calc((100% / 3) - (10px * 2) / 3);
+    background-color: var(--bg-card);
+    border: 1px solid var(--color-bord-card);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .img-card {
