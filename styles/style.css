@@ -59,6 +59,11 @@ body {
     max-width: 150px;
 }
 
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
 /*
     ================================
     FOOTER
