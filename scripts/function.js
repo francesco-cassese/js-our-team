@@ -12,7 +12,7 @@ const creaCard = impiegato => {
                     <div class="user-info">
                         <h3 class="user-name">${impiegato.name}</h3>
                         <span class="user-role">RUOLO: ${impiegato.role}</span>
-                        <span class="user-email">EMAIL: ${impiegato.email}</span>
+                        <a href="#"class="user-email">EMAIL: ${impiegato.email}</a>
                     </div>
                 </div>`;
     return cardImpiegato;
