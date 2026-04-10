@@ -18,12 +18,15 @@
 
 :root {
     --bg-body: #F8F9FA;
+    --color-body: #4b5563;
     --bg-card: #ffffff;
     --color-title: #1a1a1b;
     --color-bord-card: #e0e0e0;
     --color-user-name: #1a1a1b;
     --color-user-role: #6b7280;
     --color-user-email: #2563eb;
+    --input-border-color: #1a1a1b;
+    --bg-input: #fff;
 }
 
 body {
@@ -31,7 +34,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--bg-body);
-    color: ;
+    color: var(--color-body);
 }
 
 h1,
@@ -85,6 +88,7 @@ h2 {
     background-color: var(--bg-card);
     border: 1px solid var(--color-bord-card);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    flex-wrap: wrap;
 }
 
 .img-card {
@@ -134,4 +138,28 @@ h2 {
 .header-work-whit-us {
     text-align: center;
     margin: 20px;
+}
+
+#form-work-whit-us {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 900px;
+}
+
+#form-work-whit-us input {
+    border: 1px solid var(--input-border-color);
+    background-color: var(--bg-input);
+    padding: 8px;
+}
+
+#form-work-whit-us label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-family: sans-serif;
+    font-weight: 600;
+    color: #1a1a1b;
 }

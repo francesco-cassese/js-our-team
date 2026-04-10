@@ -6,15 +6,15 @@ const creaCard = impiegato => {
 
     const cardImpiegato = `
     <div class="card">
-                    <div class="container-img">
-                        <img src="${impiegato.img}" alt="Img-dipendente" class="img-card">
-                    </div>
-                    <div class="user-info">
-                        <h3 class="user-name">${impiegato.name}</h3>
-                        <span class="user-role">RUOLO: ${impiegato.role}</span>
-                        <a href="#"class="user-email">EMAIL: ${impiegato.email}</a>
-                    </div>
-                </div>`;
+            <div class="container-img">
+                <img src="${impiegato.img}" alt="Img-dipendente" class="img-card">
+            </div>
+                <div class="user-info">
+                    <h3 class="user-name">${impiegato.name}</h3>
+                    <span class="user-role">RUOLO: ${impiegato.role}</span>
+                    <a href="#"class="user-email">EMAIL: ${impiegato.email}</a>
+            </div>
+    </div>`;
     return cardImpiegato;
 }
 
