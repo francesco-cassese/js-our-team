@@ -25,7 +25,7 @@
     --color-user-name: #1a1a1b;
     --color-user-role: #6b7280;
     --color-user-email: #2563eb;
-    --input-border-color: #1a1a1b;
+    --input-border-color: #d1d5db;
     --bg-input: #fff;
 }
 
@@ -145,7 +145,6 @@ h2 {
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    max-width: 900px;
 }
 
 #form-work-whit-us input {
@@ -162,4 +161,21 @@ h2 {
     font-family: sans-serif;
     font-weight: 600;
     color: #1a1a1b;
+}
+
+.btn-form {
+    align-self: flex-end;
+    padding: 12px 25px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 37px;
+}
+
+.btn-form:hover {
+    background-color: #1d4ed8;
 }
