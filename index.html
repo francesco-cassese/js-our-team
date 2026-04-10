@@ -10,40 +10,58 @@
 
 <body>
     <!-- Header-->
-    <header>
+    <header class="header-title">
         <h1>Dipartimento Scuse Patetiche</h1>
         <span>La nostra serietà è in manutenzione straordinaria.</span>
     </header>
-    <main>
+    <main class="wrapper">
 
         <!-- Sezione Team -->
         <section class="team">
             <h2>The blame group</h2>
-            <div class="container-cards"></div>
+            <div class="container-cards">
+                <div class="card">
+                    <div class="container-img">
+                        <img src="./imgs/male1.png" alt="Img-dipendente" class="img-card">
+                    </div>
+                    <div class="user-info">
+                        <h3>Marco Bianchi</h3>
+                        <span>Role: Designer</span>
+                        <span>Email: marcobianchi@team.com</span>
+                    </div>
+                </div>
+            </div>
         </section>
+    </main>
+    <footer class="footer">
 
         <!-- Sezione lavora con noi -->
         <section class="work-with-us">
             <div class="header-work-with-us">
-                <h2>"Lavora"con noi</h2>
+                <h2>"Lavora" con noi</h2>
                 <span>Da noi non farai carriera, ma avrai sempre un'ottima scusa per non averci provato.</span>
             </div>
 
             <!-- Input per inserimento dati -->
-            <form>
-                <label for="input-name">
-                    <input type="text" id="input-name" placeholder="Inserisci il tuo nome">
-                </label>
-                <label for="input-role">
-                    <input type="text" id="input-role" placeholder="Inserisci il ruolo">
-                </label>
-                <label for="input-img">
-                    <input type="text" id="input-img" placeholder="Url foto profilo">
-                </label>
-                <button type="submit">Unisciti al team</button>
-            </form>
+            <div class="container-form">
+                <form>
+                    <label for="input-name">
+                        <input type="text" id="input-name" placeholder="Inserisci il tuo nome">
+                    </label>
+                    <label for="input-role">
+                        <input type="text" id="input-role" placeholder="Inserisci il ruolo">
+                    </label>
+                    <label for="input-img">
+                        <input type="text" id="input-img" placeholder="Url foto profilo">
+                    </label>
+                    <label for="input-email">
+                        <input type="text" id="input-email" placeholder="Inserisci l'Email">
+                    </label>
+                    <button type="submit">Unisciti al team</button>
+                </form>
+            </div>
         </section>
-    </main>
+    </footer>
     <script src="./scripts/teams.js"></script>
     <script src="./scripts/function.js"></script>
     <script src="./scripts/script.js"></script>
