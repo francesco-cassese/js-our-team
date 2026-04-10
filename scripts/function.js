@@ -37,3 +37,26 @@ const stampaCard = listaMembri => {
     // Restituisco il risultato finale
     return listaCardHtml;
 }
+
+// FUNZIONE AGGIUNGI NUOVA CARD
+
+const aggiungiCard = event => {
+
+    event.preventDefault();
+
+    const nuovoImpiegato = {
+        name: inputNome.value,
+        role: inputRole.value,
+        email: inputEmail.value,
+        img: inputImg.value
+    }
+
+    teamMembers.push(nuovoImpiegato);
+
+    cardContainer.innerHTML = stampaCard(teamMembers);
+
+    inputNome.value = ""
+    inputRole.value = ""
+    inputEmail.value = ""
+    inputImg.value = ""
+}
