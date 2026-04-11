@@ -2,7 +2,7 @@
 
 // FUNZIONE DI VALIDAZIONE 
 
-const validaInput = (input) => {
+const validaInput = input => {
 
     const valorePulito = input.trim();
 
@@ -14,6 +14,10 @@ const validaInput = (input) => {
         return valorePulito;
     }
 };
+
+//FUNZIONE VALIDAZIONE EMAIL
+
+const validaEmail =
 
 // FUNZIONE CREA CARD
 
