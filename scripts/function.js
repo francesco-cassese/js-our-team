@@ -17,7 +17,60 @@ const validaInput = input => {
 
 //FUNZIONE VALIDAZIONE EMAIL
 
-const validaEmail =
+const validaEmail = input => {
+
+    // Rimuovo gli spazi in eccesso ai lati dell'email
+    const controlloBase = validaInput(input);
+
+    // Se il controllo base mi dice che è nullo (-1) o vuoto (0), restituisco subito il codice
+    if (controlloBase === -1 || controlloBase === 0) {
+        return controlloBase;
+    }
+
+    //Se arrivo qui, 'controlloBase' contiene la stringa pulita
+    // Inizia la scansione sulla stringa già pulita
+    const testo = controlloBase;
+    let posChiocciola = -1;
+    let posPunto = -1;
+    let contaChiocciole = 0;
+
+    //Inizializzo il ciclo for per "scansionare l'email"
+    for (let i = 0; i < testo.lenght; i++) {
+
+        const carattereCorrente = testo[i];
+
+        //Se trovo la chiocciola @ aumento il contatore e vedo qual'è la posizione
+        if (carattereCorrente === '@') {
+            contaChiocciole++;
+            posChiocciola = i;
+        }
+
+        // Se trovo un punto, controllo se si trova DOPO la chiocciola
+        // Se sì, salvo la posizione. Se ne trovo altri dopo, questa variabile si aggiornerà all'ultimo punto
+        if (carattereCorrente === "." && posChiocciola !== -1) {
+            posPunto = i;
+        }
+
+        // Creo delle costanti per avere nomi più chiari
+
+        const haUnaSolaChiocciola = (contaChiocciole === 1);
+        const chiocciolaNonInizio = (posChiocciola > 0);
+        const puntoDopoChiocciola = (posPuntoDopoChiocciola > posChiocciola + 1);
+        const puntoNonAllaFine = (posPuntoDopoChiocciola < testo.length - 1);
+
+        if (haUnaSolaChiocciola &&     //Una sola chiocciola
+            chiocciolaNonInizio &&     //Non all'inizio
+            puntoDopoChiocciola &&     //Mi assicuro che tra il punto e la chiocciola ci sia almeno un carattere
+            puntoNonAllaFine) {        //Mi assicuro che il punto non sia alla fine
+
+            // Email valida
+            return 1;
+        }
+    }
+
+    //Se arrivo qui, l'email non è valida
+    return 2;
+}
 
 // FUNZIONE CREA CARD
 
