@@ -1,5 +1,20 @@
 'use strict';
 
+// FUNZIONE DI VALIDAZIONE 
+
+const validaInput = (input) => {
+
+    const valorePulito = input.trim();
+
+    if (input === null || input === undefined) {
+        return -1;
+    } else if (valorePulito === "") {
+        return 0;
+    } else {
+        return valorePulito;
+    }
+};
+
 // FUNZIONE CREA CARD
 
 const creaCard = impiegato => {
@@ -44,10 +59,14 @@ const aggiungiCard = event => {
 
     event.preventDefault();
 
+    const nomeValidato = validaInput(inputNome.value);
+    const ruoloValidato = validaInput(inputRole.value);
+    const urlValidato = validaInput(inputImg.value);
+
     const nuovoImpiegato = {
-        name: inputNome.value,
-        role: inputRole.value,
-        email: inputEmail.value,
+        name: nomeValidato,
+        role: ruoloValidato,
+        email: urlValidato,
         img: inputImg.value
     }
 
