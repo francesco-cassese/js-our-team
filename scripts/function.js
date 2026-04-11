@@ -35,7 +35,7 @@ const validaEmail = input => {
     let contaChiocciole = 0;
 
     //Inizializzo il ciclo for per "scansionare l'email"
-    for (let i = 0; i < testo.lenght; i++) {
+    for (let i = 0; i < testo.length; i++) {
 
         const carattereCorrente = testo[i];
 
@@ -50,23 +50,23 @@ const validaEmail = input => {
         if (carattereCorrente === "." && posChiocciola !== -1) {
             posPunto = i;
         }
-
-        // Creo delle costanti per avere nomi più chiari
-
-        const haUnaSolaChiocciola = (contaChiocciole === 1);
-        const chiocciolaNonInizio = (posChiocciola > 0);
-        const puntoDopoChiocciola = (posPuntoDopoChiocciola > posChiocciola + 1);
-        const puntoNonAllaFine = (posPuntoDopoChiocciola < testo.length - 1);
-
-        if (haUnaSolaChiocciola &&     //Una sola chiocciola
-            chiocciolaNonInizio &&     //Non all'inizio
-            puntoDopoChiocciola &&     //Mi assicuro che tra il punto e la chiocciola ci sia almeno un carattere
-            puntoNonAllaFine) {        //Mi assicuro che il punto non sia alla fine
-
-            // Email valida
-            return 1;
-        }
     }
+    // Creo delle costanti per avere nomi più chiari
+
+    const haUnaSolaChiocciola = (contaChiocciole === 1);
+    const chiocciolaNonInizio = (posChiocciola > 0);
+    const puntoDopoChiocciola = (posPunto > posChiocciola + 1);
+    const puntoNonAllaFine = (posPunto < testo.length - 1);
+
+    if (haUnaSolaChiocciola &&     //Una sola chiocciola
+        chiocciolaNonInizio &&     //Non all'inizio
+        puntoDopoChiocciola &&     //Mi assicuro che tra il punto e la chiocciola ci sia almeno un carattere
+        puntoNonAllaFine) {        //Mi assicuro che il punto non sia alla fine
+
+        // Email valida
+        return 1;
+    }
+
 
     //Se arrivo qui, l'email non è valida
     return 2;
@@ -118,13 +118,14 @@ const aggiungiCard = event => {
 
     const nomeValidato = validaInput(inputNome.value);
     const ruoloValidato = validaInput(inputRole.value);
+    const emailValidata = validaEmail(inputEmail.value);
     const urlValidato = validaInput(inputImg.value);
 
     const nuovoImpiegato = {
         name: nomeValidato,
         role: ruoloValidato,
-        email: urlValidato,
-        img: inputImg.value
+        email: emailValidata,
+        img: urlValidato
     }
 
     teamMembers.push(nuovoImpiegato);
