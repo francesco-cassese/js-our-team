@@ -61,7 +61,7 @@ const creaCard = (impiegato, indice) => {
             </div>
             <div class="user-info">
                 <h3 class="user-name">${impiegato.name}</h3>
-                <span class="user-role">RUOLO: ${impiegato.role}</span>
+                <span class="user-role">${impiegato.role}</span>
                 <a href="#" class="user-email">${impiegato.email}</a> 
                 <button class="btn-delete" data-index="${indice}">FIRE</button>      
             </div>
