@@ -162,18 +162,15 @@ body {
     width: 50%;
 }
 
-/* Effetto al passaggio del mouse (Hover) */
+/* Effetto al passaggio del mouse */
 .btn-delete:hover {
     background-color: #c0392b;
-    /* Il rosso diventa più scuro quando ci passi sopra */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Un po' di ombra per dare profondità */
 }
 
 /* Effetto al click */
 .btn-delete:active {
     transform: scale(0.95);
-    /* Il bottone si rimpicciolisce un filo quando clicchi */
 }
 
 /* FOOTER E FORM */
