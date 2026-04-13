@@ -90,14 +90,13 @@ body {
 .card {
     display: flex;
     flex: 0 1 calc((100% / 3) - (20px * 2) / 3);
-    min-width: 300px;
+    min-width: 340px;
     background-color: var(--bg-card);
     border: 1px solid var(--color-bord-card);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
-    align-items: stretch;
 }
 
 .card:hover {
@@ -113,7 +112,7 @@ body {
 .img-card {
     display: block;
     width: 100%;
-    aspect-ratio: 1;
+    height: 100%;
     object-fit: cover;
 }
 
