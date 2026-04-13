@@ -123,6 +123,7 @@ body {
     justify-content: center;
     padding: 15px;
     width: 100%;
+    gap: 4px;
 }
 
 .user-name {
