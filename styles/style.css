@@ -106,6 +106,7 @@ body {
 
 .container-img {
     width: 150px;
+    aspect-ratio: 1;
     flex-shrink: 0;
     overflow: hidden;
 }
