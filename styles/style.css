@@ -60,6 +60,7 @@ body {
 
 .header-title span {
     color: var(--txt-header-subtitle);
+    font-weight: bold;
 }
 
 .header-title h1 {
@@ -191,6 +192,7 @@ body {
 
 .header-work-whit-us span {
     color: var(--color-footer-subtitle);
+    font-weight: bold;
 }
 
 #form-work-whit-us {
