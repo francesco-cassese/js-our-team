@@ -148,7 +148,6 @@ body {
     text-decoration: underline;
 }
 
-/* Stile per il bottone di eliminazione */
 .btn-delete {
     background-color: #e74c3c;
     color: white;
@@ -162,13 +161,11 @@ body {
     width: 50%;
 }
 
-/* Effetto al passaggio del mouse */
 .btn-delete:hover {
     background-color: #c0392b;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Effetto al click */
 .btn-delete:active {
     transform: scale(0.95);
 }
