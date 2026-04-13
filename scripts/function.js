@@ -112,7 +112,7 @@ const stampaCard = listaMembri => {
 
 // FUNZIONE AGGIUNGI NUOVA CARD
 
-const aggiungiCard = (event) => {
+const aggiungiCard = event => {
     event.preventDefault();
 
     // Richiamo le funzioni di validazione e salvo i risultati
