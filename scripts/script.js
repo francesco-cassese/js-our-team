@@ -10,3 +10,5 @@ const inputEmail = document.querySelector('#input-email');
 cardContainer.innerHTML = stampaCard(teamMembers);
 
 form.addEventListener('submit', aggiungiCard);
+
+cardContainer.addEventListener('click', gestisciClickEliminazione);
