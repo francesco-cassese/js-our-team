@@ -93,7 +93,7 @@ const stampaCard = listaMembri => {
 // ===================================
 //  FUNZIONE AGGIUNGI NUOVA CARD 
 // ===================================
-const aggiungiCard = event => {
+const controllaCard = event => {
     event.preventDefault();                                                     // Fermo il caricamento della pagina
 
     const nomeValidato = validaInput(inputNome.value);                          // Valido il nome
@@ -115,25 +115,32 @@ const aggiungiCard = event => {
     else if (emailStato === 3) alert("Manca il punto dopo la chiocciola.");     // Alert per codice errore 3
     else if (emailStato === 4) alert("L'email non può finire con un punto.");   // Alert per codice errore 4
     else {                                                                      // Se supero tutti i controlli...
-        const nuovoImpiegato = {                                                // ...creo l'oggetto del nuovo dipendente
-            name: nomeValidato,
-            role: ruoloValidato,
-            email: emailStato,                                                  // Qui emailStato è sicuramente la stringa
-            img: urlValidato
-        };
-
-        teamMembers.push(nuovoImpiegato);                                       // Lo aggiungo alla mia lista dati
-        cardContainer.innerHTML = stampaCard(teamMembers);                      // Rinfresco la visualizzazione nel browser
-
-        inputNome.value = ""; inputRole.value = "";                             // Pulisco i campi di input del form
-        inputEmail.value = ""; inputImg.value = "";                             // (continuo la pulizia)
+        creaNuovaCard(nomeValidato, ruoloValidato, emailStato, urlValidato);    // ...creo l'oggetto del nuovo dipendente     
     }
+}
+
+// ===================================
+//  FUNZIONE CREA NUOVA CARD 
+// ===================================
+const creaNuovaCard = (nome, ruolo, email, immagine) => {                   // Creo il nuovo oggetto
+    const nuovoImpiegato = {
+        name: nome,
+        role: ruolo,
+        email: email,
+        img: immagine
+    };
+
+    teamMembers.push(nuovoImpiegato);                                       // Lo aggiungo alla mia lista dati
+    cardContainer.innerHTML = stampaCard(teamMembers);                      // Rinfresco la visualizzazione nel browser
+
+    inputNome.value = ""; inputRole.value = "";                             // Pulisco i campi di input del form
+    inputEmail.value = ""; inputImg.value = "";                             // (continuo la pulizia)
 }
 
 // ===================================
 //  FUNZIONE RIMUOVI CARD 
 // ===================================
-const eliminaCard = (indiceDaRimuovere) => {
+const eliminaCard = indiceDaRimuovere => {
     teamMembers.splice(indiceDaRimuovere, 1);                                   // Cancello 1 elemento alla posizione scelta
     cardContainer.innerHTML = stampaCard(teamMembers);                          // Ristampo tutto per aggiornare gli indici
     console.log(` rimosso membro all'indice ${indiceDaRimuovere}`);             // Loggo l'operazione in console

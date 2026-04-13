@@ -9,6 +9,6 @@ const inputEmail = document.querySelector('#input-email');
 
 cardContainer.innerHTML = stampaCard(teamMembers);                   // Eseguo la prima stampa delle card all'avvio
 
-form.addEventListener('submit', aggiungiCard);                       // Resto in ascolto del "submit" per aggiungere un impiegato
+form.addEventListener('submit', controllaCard);                       // Resto in ascolto del "submit" per aggiungere un impiegato
 
 cardContainer.addEventListener('click', gestisciClickEliminazione);  // Uso l'event delegation per gestire i click sui tasti elimina
