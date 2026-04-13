@@ -1,6 +1,8 @@
 'use strict';
 
-// --- FUNZIONE DI VALIDAZIONE GENERICA ---
+// ===================================
+//  FUNZIONE DI VALIDAZIONE GENERICA 
+// ===================================
 const validaInput = input => {
     const valorePulito = input.trim();                                          // Tolgo gli spazi inutili ai bordi
 
@@ -13,7 +15,9 @@ const validaInput = input => {
     }
 };
 
-// --- FUNZIONE VALIDAZIONE EMAIL ---
+// ===================================
+//  FUNZIONE DI VALIDAZIONE EMAIL 
+// ===================================
 const validaEmail = input => {
     const controlloBase = validaInput(input);                                   // Riutilizzo la logica di base qui sopra
 
@@ -52,7 +56,9 @@ const validaEmail = input => {
     return testo;                                                               // Se tutto è OK, ritorno l'email pulita
 };
 
-// --- FUNZIONE CREA CARD ---
+// ===================================
+//  FUNZIONE CREA CARD 
+// ===================================
 const creaCard = (impiegato, indice) => {
     const cardImpiegato = `
     <div class="card">
@@ -69,7 +75,9 @@ const creaCard = (impiegato, indice) => {
     return cardImpiegato;                                                       // Genero e restituisco il pezzo di HTML
 }
 
-// --- FUNZIONE STAMPA CARD ---
+// ===================================
+//  FUNZIONE STAMPA CARD 
+// ===================================
 const stampaCard = listaMembri => {
     let listaCardHtml = "";                                                     // Preparo una stringa HTML vuota
 
@@ -82,7 +90,9 @@ const stampaCard = listaMembri => {
     return listaCardHtml;                                                       // Restituisco l'HTML di tutte le card
 }
 
-// --- FUNZIONE AGGIUNGI NUOVA CARD ---
+// ===================================
+//  FUNZIONE AGGIUNGI NUOVA CARD 
+// ===================================
 const aggiungiCard = event => {
     event.preventDefault();                                                     // Fermo il caricamento della pagina
 
@@ -120,31 +130,34 @@ const aggiungiCard = event => {
     }
 }
 
-// --- FUNZIONE RIMUOVI CARD ---
+// ===================================
+//  FUNZIONE RIMUOVI CARD 
+// ===================================
 const eliminaCard = (indiceDaRimuovere) => {
     teamMembers.splice(indiceDaRimuovere, 1);                                   // Cancello 1 elemento alla posizione scelta
     cardContainer.innerHTML = stampaCard(teamMembers);                          // Ristampo tutto per aggiornare gli indici
     console.log(` rimosso membro all'indice ${indiceDaRimuovere}`);             // Loggo l'operazione in console
 }
 
-// --- FUNZIONE DI GESTIONE CLICK ---
+// ===================================
+//  FUNZIONE GESTIONE CLICK 
+// ===================================
 const gestisciClickEliminazione = event => {
 
-    const elementoCliccato = event.target;                                      // Mi segno chi ha ricevuto il click
+    const bottone = event.target.closest('.btn-delete');          // Cerco il primo elemento (partendo dal target che abbia la classe .btn-delete
 
-    // Controllo se ho cliccato proprio sul tasto con la classe giusta
-    if (elementoCliccato.classList.contains('btn-delete')) {                    // "Se il bersaglio ha la classe btn-delete..."
+    if (bottone === null) {                                       // Se il click è avvenuto fuori da un bottone di eliminazione,                                                            
+        return;                                                   //  interrompo la funzione
+    }
 
-        // Recupero l'indice dal data-attribute del bottone
-        const indice = elementoCliccato.getAttribute('data-index');             // Leggo l'indice salvato nell'HTML
-        const indiceNumerico = parseInt(indice);                                // Trasformo la stringa in numero
+    const indice = bottone.dataset.index;                                   // Recupero il valore data-index tramite dataset
+    const indiceNumerico = parseInt(indice);                                // Converto la stringa recuperata in un numero intero
 
-        // Chiamo la logica di rimozione
-        teamMembers.splice(indiceNumerico, 1);                                  // Tolgo l'elemento dall'array globale
+    // Procedo con la logica solo se l'indice è valido
+    if (indiceNumerico >= 0) {                                              // "Se l'indice è un numero valido (0 o superiore)..."
+        teamMembers.splice(indiceNumerico, 1);                              // Rimuovo esattamente quell'elemento dall'array
+        cardContainer.innerHTML = stampaCard(teamMembers);                  // Ricarico l'HTML del contenitore con la lista aggiornata
 
-        // Aggiorno la lista
-        cardContainer.innerHTML = stampaCard(teamMembers);                      // Ristampo le card rimaste
-
-        console.log(`rimosso l'impiegato alla posizione ${indiceNumerico}`); // Loggo eliminazione
+        console.log(`Rimosso l'impiegato alla posizione ${indiceNumerico}`); // Confermo l'avvenuta rimozione nella console
     }
 }
