@@ -105,7 +105,7 @@ body {
 }
 
 .container-img {
-    width: 120px;
+    width: 150px;
     flex-shrink: 0;
     overflow: hidden;
 }
@@ -122,6 +122,7 @@ body {
     flex-direction: column;
     justify-content: center;
     padding: 15px;
+    width: 100%;
 }
 
 .user-name {
@@ -145,6 +146,34 @@ body {
 
 .user-email:hover {
     text-decoration: underline;
+}
+
+/* Stile per il bottone di eliminazione */
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+    width: 50%;
+}
+
+/* Effetto al passaggio del mouse (Hover) */
+.btn-delete:hover {
+    background-color: #c0392b;
+    /* Il rosso diventa più scuro quando ci passi sopra */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Un po' di ombra per dare profondità */
+}
+
+/* Effetto al click */
+.btn-delete:active {
+    transform: scale(0.95);
+    /* Il bottone si rimpicciolisce un filo quando clicchi */
 }
 
 /* FOOTER E FORM */
