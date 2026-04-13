@@ -57,7 +57,7 @@ const creaCard = (impiegato, indice) => {
     const cardImpiegato = `
     <div class="card">
             <div class="container-img">
-                <img src="${impiegato.img}" alt="Img" class="img-card">
+                <img src="./img/${impiegato.img}" alt="Img" class="img-card">
             </div>
             <div class="user-info">
                 <h3 class="user-name">${impiegato.name}</h3>
