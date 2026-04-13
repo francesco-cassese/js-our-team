@@ -17,60 +17,60 @@ const validaInput = input => {
 
 //FUNZIONE VALIDAZIONE EMAIL
 
-const validaEmail = input => {
+const validaEmail = (input) => {
 
-    // Rimuovo gli spazi in eccesso ai lati dell'email
+    // 1. Pulizia e controllo base (ritorna -1 o 0 se nullo/vuoto)
     const controlloBase = validaInput(input);
 
-    // Se il controllo base mi dice che è nullo (-1) o vuoto (0), restituisco subito il codice
     if (controlloBase === -1 || controlloBase === 0) {
         return controlloBase;
     }
 
-    //Se arrivo qui, 'controlloBase' contiene la stringa pulita
-    // Inizia la scansione sulla stringa già pulita
+    // 2. Analisi del testo pulito
     const testo = controlloBase;
     let posChiocciola = -1;
     let posPunto = -1;
     let contaChiocciole = 0;
 
-    //Inizializzo il ciclo for per "scansionare l'email"
     for (let i = 0; i < testo.length; i++) {
-
         const carattereCorrente = testo[i];
 
-        //Se trovo la chiocciola @ aumento il contatore e vedo qual'è la posizione
         if (carattereCorrente === '@') {
             contaChiocciole++;
             posChiocciola = i;
         }
 
-        // Se trovo un punto, controllo se si trova DOPO la chiocciola
-        // Se sì, salvo la posizione. Se ne trovo altri dopo, questa variabile si aggiornerà all'ultimo punto
         if (carattereCorrente === "." && posChiocciola !== -1) {
             posPunto = i;
         }
     }
-    // Creo delle costanti per avere nomi più chiari
 
+    // 3. Verifiche di validità
     const haUnaSolaChiocciola = (contaChiocciole === 1);
     const chiocciolaNonInizio = (posChiocciola > 0);
     const puntoDopoChiocciola = (posPunto > posChiocciola + 1);
     const puntoNonAllaFine = (posPunto < testo.length - 1);
 
-    if (haUnaSolaChiocciola &&     //Una sola chiocciola
-        chiocciolaNonInizio &&     //Non all'inizio
-        puntoDopoChiocciola &&     //Mi assicuro che tra il punto e la chiocciola ci sia almeno un carattere
-        puntoNonAllaFine) {        //Mi assicuro che il punto non sia alla fine
-
-        // Email valida
-        return 1;
+    // 4. Gestione Errori
+    if (!haUnaSolaChiocciola) {
+        return 1; // Errore: numero di @ non valido
     }
 
+    if (!chiocciolaNonInizio) {
+        return 2; // Errore: @ all'inizio
+    }
 
-    //Se arrivo qui, l'email non è valida
-    return 2;
-}
+    if (!puntoDopoChiocciola) {
+        return 3; // Errore: manca punto dopo @
+    }
+
+    if (!puntoNonAllaFine) {
+        return 4; // Errore: termina con punto
+    }
+
+    // Ritorno l'email pulita (stringa)
+    return testo;
+};
 
 // FUNZIONE CREA CARD
 
@@ -84,7 +84,7 @@ const creaCard = impiegato => {
                 <div class="user-info">
                     <h3 class="user-name">${impiegato.name}</h3>
                     <span class="user-role">RUOLO: ${impiegato.role}</span>
-                    <a href="#"class="user-email">EMAIL: ${impiegato.email}</a>
+                    <a href="#"class="user-email">${impiegato.email}</a>
             </div>
     </div>`;
     return cardImpiegato;
@@ -112,28 +112,57 @@ const stampaCard = listaMembri => {
 
 // FUNZIONE AGGIUNGI NUOVA CARD
 
-const aggiungiCard = event => {
-
+const aggiungiCard = (event) => {
     event.preventDefault();
 
+    // Richiamo le funzioni di validazione e salvo i risultati
     const nomeValidato = validaInput(inputNome.value);
     const ruoloValidato = validaInput(inputRole.value);
-    const emailValidata = validaEmail(inputEmail.value);
+    const emailStato = validaEmail(inputEmail.value);
     const urlValidato = validaInput(inputImg.value);
 
-    const nuovoImpiegato = {
-        name: nomeValidato,
-        role: ruoloValidato,
-        email: emailValidata,
-        img: urlValidato
+    // Catena di controlli IF / ELSE IF con alert specifici
+    if (nomeValidato === 0 || nomeValidato === -1) {
+        alert("Errore: Il campo Nome è obbligatorio.");
     }
+    else if (ruoloValidato === 0 || ruoloValidato === -1) {
+        alert("Errore: Il campo Ruolo è obbligatorio.");
+    }
+    else if (emailStato === 0 || emailStato === -1) {
+        alert("Errore: Il campo Email è obbligatorio.");
+    }
+    else if (emailStato === 1) {
+        alert("L'email deve contenere esattamente una chiocciola (@).");
+    }
+    else if (emailStato === 2) {
+        alert("L'email non può iniziare con una chiocciola (@).");
+    }
+    else if (emailStato === 3) {
+        alert("Manca il punto (.) dopo la chiocciola o non c'è testo tra i due.");
+    }
+    else if (emailStato === 4) {
+        alert("L'email non può terminare con un punto (.).");
+    }
+    else {
+        // SE ARRIVO QUI, TUTTO È CORRETTO
+        // Creo l'oggetto usando i valori puliti
+        const nuovoImpiegato = {
+            name: nomeValidato,
+            role: ruoloValidato,
+            email: inputEmail.value.trim(),
+            img: urlValidato
+        };
 
-    teamMembers.push(nuovoImpiegato);
+        // Aggiungo all'array globale
+        teamMembers.push(nuovoImpiegato);
 
-    cardContainer.innerHTML = stampaCard(teamMembers);
+        // Richiamo la funzione di stampa per aggiornare il DOM
+        cardContainer.innerHTML = stampaCard(teamMembers);
 
-    inputNome.value = ""
-    inputRole.value = ""
-    inputEmail.value = ""
-    inputImg.value = ""
+        //resetto tutto 
+        inputNome.value = ""
+        inputRole.value = ""
+        inputEmail.value = ""
+        inputImg.value = ""
+    }
 }
