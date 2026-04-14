@@ -133,8 +133,10 @@ const creaNuovaCard = (nome, ruolo, email, immagine) => {                   // C
     teamMembers.push(nuovoImpiegato);                                       // Lo aggiungo alla mia lista dati
     cardContainer.innerHTML = stampaCard(teamMembers);                      // Rinfresco la visualizzazione nel browser
 
-    inputNome.value = ""; inputRole.value = "";                             // Pulisco i campi di input del form
-    inputEmail.value = ""; inputImg.value = "";                             // (continuo la pulizia)
+    inputNome.value = "";                                                   // Pulisco i campi di input del form
+    inputRole.value = "";
+    inputEmail.value = "";
+    inputImg.value = "";
 }
 
 // ===================================
