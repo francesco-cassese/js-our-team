@@ -1,5 +1,14 @@
 'use strict';
 
+const statoErroriInput = {
+    nullo: -1,
+    vuoto: -2,
+    formatoErrato: -3,
+    posizioneChiocciolaErrata: -4,
+    dominioMancante: -5,
+    posizionePuntoErrato: -6
+}
+
 // ===================================
 //  FUNZIONE DI VALIDAZIONE GENERICA 
 // ===================================
@@ -7,9 +16,9 @@ const validaInput = input => {
     const valorePulito = input.trim();                                          // Tolgo gli spazi inutili ai bordi
 
     if (input === null || input === undefined) {                                // Se il dato non esiste proprio
-        return -1;                                                              // Ritorno -1 (errore tecnico)
+        return statoErroriInput.nullo;                                                // Ritorno -1 (errore tecnico)
     } else if (valorePulito === "") {                                           // Se dopo la pulizia è vuoto
-        return 0;                                                               // Ritorno 0 (campo mancante)
+        return statoErroriInput.vuoto;                                                // Ritorno 0 (campo mancante)
     } else {
         return valorePulito;                                                    // Altrimenti ritorno il testo pulito
     }
@@ -19,10 +28,10 @@ const validaInput = input => {
 //  FUNZIONE DI VALIDAZIONE EMAIL 
 // ===================================
 const validaEmail = input => {
-    const controlloBase = validaInput(input);                                   // Riutilizzo la logica di base qui sopra
+    const controlloBase = validaInput(input);                                            // Riutilizzo la logica di base qui sopra
 
-    if (controlloBase === -1 || controlloBase === 0) {                          // Se è già nulla o vuota
-        return controlloBase;                                                   // Esco subito con il codice errore
+    if (controlloBase === statoErroriInput.nullo || controlloBase === statoErroriInput.vuoto) {      // Se è già nulla o vuota
+        return controlloBase;                                                            // Esco subito con il codice errore
     }
 
     const testo = controlloBase;                                                // Lavoro sulla stringa già pulita
@@ -48,10 +57,10 @@ const validaEmail = input => {
     const puntoDopoChiocciola = (posPunto > posChiocciola + 1);                 // Verifico che ci sia testo tra @ e .
     const puntoNonAllaFine = (posPunto < testo.length - 1);                     // Verifico che non sia l'ultimo carattere
 
-    if (!haUnaSolaChiocciola) return 1;                                         // Ritorno 1: errore quantità @
-    if (!chiocciolaNonInizio) return 2;                                         // Ritorno 2: @ all'inizio
-    if (!puntoDopoChiocciola) return 3;                                         // Ritorno 3: errore dominio/punto
-    if (!puntoNonAllaFine) return 4;                                            // Ritorno 4: punto finale errato
+    if (!haUnaSolaChiocciola) return statoErroriInput.formatoErrato;                  // errore quantità @
+    if (!chiocciolaNonInizio) return statoErroriInput.posizioneChiocciolaErrata;      // @ all'inizio
+    if (!puntoDopoChiocciola) return statoErroriInput.dominioMancante;                // errore dominio/punto
+    if (!puntoNonAllaFine) return statoErroriInput.posizionePuntoErrato;              // punto finale errato
 
     return testo;                                                               // Se tutto è OK, ritorno l'email pulita
 };
@@ -97,25 +106,25 @@ const controllaCard = event => {
     event.preventDefault();                                                     // Fermo il caricamento della pagina
 
     const nomeValidato = validaInput(inputNome.value);                          // Valido il nome
-    const ruoloValidato = validaInput(inputRole.value);                        // Valido il ruolo
-    const emailStato = validaEmail(inputEmail.value);                          // Valido l'email (stringa o errore)
+    const ruoloValidato = validaInput(inputRole.value);                         // Valido il ruolo
+    const emailStato = validaEmail(inputEmail.value);                           // Valido l'email (stringa o errore)
     const urlValidato = validaInput(inputImg.value);                            // Valido l'URL immagine
 
-    if (nomeValidato === 0 || nomeValidato === -1) {                            // Controllo se il nome manca
+    if (nomeValidato === statoErroriInput.nullo || nomeValidato === statoErroriInput.vuoto) {           // Controllo se il nome manca
         alert("Errore: Il campo Nome è obbligatorio.");
     }
-    else if (ruoloValidato === 0 || ruoloValidato === -1) {                     // Controllo se il ruolo manca
+    else if (ruoloValidato === statoErroriInput.nullo || ruoloValidato === statoErroriInput.vuoto) {    // Controllo se il ruolo manca
         alert("Errore: Il campo Ruolo è obbligatorio.");
     }
-    else if (emailStato === 0 || emailStato === -1) {                           // Controllo se l'email manca
+    else if (emailStato === statoErroriInput.nullo || emailStato === statoErroriInput.vuoto) {           // Controllo se l'email manca
         alert("Errore: Il campo Email è obbligatorio.");
     }
-    else if (emailStato === 1) alert("Manca la @ o ce ne sono troppe.");        // Alert per codice errore 1
-    else if (emailStato === 2) alert("L'email non può iniziare con @.");        // Alert per codice errore 2
-    else if (emailStato === 3) alert("Manca il punto dopo la chiocciola.");     // Alert per codice errore 3
-    else if (emailStato === 4) alert("L'email non può finire con un punto.");   // Alert per codice errore 4
-    else {                                                                      // Se supero tutti i controlli...
-        creaNuovaCard(nomeValidato, ruoloValidato, emailStato, urlValidato);    // ...creo l'oggetto del nuovo dipendente     
+    else if (emailStato === statoErroriInput.formatoErrato) alert("Manca la @ o ce ne sono troppe.");               // Alert per codice errore 1
+    else if (emailStato === statoErroriInput.posizioneChiocciolaErrata) alert("L'email non può iniziare con @.");   // Alert per codice errore 2
+    else if (emailStato === statoErroriInput.dominioMancante) alert("Manca il punto dopo la chiocciola.");          // Alert per codice errore 3
+    else if (emailStato === statoErroriInput.posizionePuntoErrato) alert("L'email non può finire con un punto.");   // Alert per codice errore 4
+    else {                                                                                                    // Se supero tutti i controlli...
+        creaNuovaCard(nomeValidato, ruoloValidato, emailStato, urlValidato);                                  // ...creo l'oggetto del nuovo dipendente     
     }
 }
 
